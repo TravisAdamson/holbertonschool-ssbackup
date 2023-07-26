@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <time.h>
-#define BSIZE 1024
 #define prompt "Shellshocked $"
 
+int main(int argc, char *argv[]);
 #endif
