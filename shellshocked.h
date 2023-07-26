@@ -9,5 +9,5 @@
 #include <time.h>
 #define prompt "Shellshocked $"
 
-int main(int argc, char *argv[]);
+int main();
 #endif

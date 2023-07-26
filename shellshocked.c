@@ -5,14 +5,14 @@
  *
  * Return: 
  */
-int main(int argc, char *argv[])
+int main()
 {
 	int i, num_char;
 	size_t bsize;
 	char *user_input;
+	char *token;
+	char *com = "ls";
 
-	(void)argc;
-	(void)argv;
 	i = 0;
 	bsize = 1024;
 	user_input = malloc(bsize);
@@ -27,8 +27,14 @@ int main(int argc, char *argv[])
 		num_char = getline(&user_input, &bsize, stdin);
 		if (num_char == 1)
 			i = 15;
-		printf("%d characters were printed\n", num_char);
-		printf("%s, is what was entered!\n", user_input);
+		token = strtok(user_input, " ");
+		if (token)
+			system(com);
+		while (token != NULL)
+		{
+			printf("%s\n", token);
+			token = strtok(NULL, " ");
+		}
 	}
 	free(user_input);
 	return (0);
