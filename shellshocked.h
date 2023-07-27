@@ -10,4 +10,5 @@
 #define prompt "Shellshocked $"
 
 int main();
+int print_env(**environ);
 #endif
