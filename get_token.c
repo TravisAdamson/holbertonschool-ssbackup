@@ -12,6 +12,7 @@ int get_token(char *user_input, char **argv)
 	char *temp_token, *temp_input, *save_ptr;
 	int count, index;
 
+	printf("started int get_token(char *user_input, char **argv)")
 	index = 1;
 	temp_input = strdup(user_input);
 	save_ptr = NULL;
@@ -36,6 +37,8 @@ int get_token(char *user_input, char **argv)
 	argv[index] = NULL;
 	free(temp_token);
 	free(temp_input);
+	 printf("ended int get_token(char *user_input, char **argv)")
+
 	return (count);
 }
 /**
@@ -47,36 +50,36 @@ int get_token(char *user_input, char **argv)
  */
 char **get_token2(char *path)
 {
-        char *temp_token, *temp_input, *save_ptr;
-        int count, index;
-	char **full_path = NULL;
+        char *temp_tokens, *temp_inputs, *save_ptrs;
+        int counts, indexs;
+	char **full_paths = NULL;
 
-        index = 0;
-        temp_input = strdup(path);
-        save_ptr = NULL;
-        if (temp_input == NULL)
+        indexs = 0;
+        temp_inputs = strdup(path);
+        save_ptrs = NULL;
+        if (temp_inputs == NULL)
                 return (0);
-        temp_token = strtok_r(temp_input, " ", &save_ptr);
-        count = 1;
-        while (temp_token != NULL)
+        temp_tokens = strtok_r(temp_inputs, " ", &save_ptrs);
+        counts = 1;
+        while (temp_tokens != NULL)
         {
-                temp_token = strtok_r(NULL, " ", &save_ptr);
-                count++;
+                temp_tokens = strtok_r(NULL, " ", &save_ptrs);
+                counts++;
         }
-	free(temp_input);
-	temp_input = strdup(path);
-	*full_path = malloc((count + 1) * sizeof(char *));
-        full_path[index] = NULL;
-        full_path[index] = strtok_r(temp_input, " ", &save_ptr);
-        index++;
-        while (index < count)
+	free(temp_inputs);
+	temp_inputs = strdup(path);
+	*full_paths = malloc((counts + 1) * sizeof(char *));
+        full_paths[indexs] = NULL;
+        full_paths[indexs] = strtok_r(temp_inputs, " ", &save_ptrs);
+        indexs++;
+        while (indexs < counts)
         {
-                full_path[index] = NULL;
-                full_path[index] = strtok_r(NULL, " ", &save_ptr);
-                index++;
+                full_paths[indexs] = NULL;
+                full_paths[indexs] = strtok_r(NULL, " ", &save_ptrs);
+                indexs++;
         }
-        full_path[index] = NULL;
-        free(temp_token);
-        free(temp_input);
-        return (full_path);
+        full_paths[indexs] = NULL;
+        free(temp_tokens);
+        free(temp_inputs);
+        return (full_paths);
 }

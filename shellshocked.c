@@ -13,6 +13,8 @@ int main(int argc, char *argv[])
 	size_t bsize;
 	char *user_input;
 	char *path = getenv("PATH");
+	
+	printf("started int main(int argc, char *argv[])");
 
 	bsize = 1024;
 	argc = 0;
@@ -39,6 +41,7 @@ int main(int argc, char *argv[])
 			printf("You entered something that isn't a command");
 	}
 	free(user_input);
+	printf("ended int main(int argc, char *argv[])");
 	return (0);
 }
 

@@ -10,6 +10,7 @@ int check_run(char **argv, char *path)
 
 	path[strcspn(path, ":")] = ' ';
 	path_tokens = get_token2(path);
+	printf("started  -- int main(int argc, char *argv[]))");
 	if (path_tokens == NULL)
 		return (-1);
 	while (argv[index] != NULL)
@@ -32,5 +33,6 @@ int check_run(char **argv, char *path)
 	{
 		waitpid(pid, &status, 0);
 	}
+	printf("ended  -- int main(int argc, char *argv[]))");
 	return (1);
 }
