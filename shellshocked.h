@@ -13,5 +13,6 @@
 int main(int argc, char **argv);
 int print_env(char **environ);
 int get_token(char *user_input, char **argv);
-int check_run(char **argv);
+char **get_token2(char *path);
+int check_run(char **argv, char *path);
 #endif

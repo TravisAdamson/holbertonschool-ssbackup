@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
 	int num_char, pass_check;
 	size_t bsize;
 	char *user_input;
+	char *path = getenv("PATH");
 
 	bsize = 1024;
 	argc = 0;
@@ -33,7 +34,7 @@ int main(int argc, char *argv[])
 		argc = get_token(user_input, argv);
 		if (argc != 0)
 			printf("You didn't enter any commands");
-		pass_check = check_run(argv);
+		pass_check = check_run(argv, path);
 		if (pass_check < 0)
 			printf("You entered something that isn't a command");
 	}
