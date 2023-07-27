@@ -30,9 +30,10 @@ int main()
 			perror("You have been shellshocked and your session has ended!\n")
 			exit(100);
 		}
-		temp_input = strdup(user_input);
+		pass_check = get_token(user_input, token);
 	}
 	free(user_input);
+	free(token);
 	return (0);
 }
 

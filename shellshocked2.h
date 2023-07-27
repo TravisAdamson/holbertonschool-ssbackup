@@ -10,6 +10,6 @@
 #define prompt "Shellshocked $"
 
 int main();
-int print_env(char **environ);
-int get_token(char *user_input, char **agrv, int argc);
+int get_token(char *user_input, char *token);
+
 #endif
