@@ -12,7 +12,6 @@ int get_token(char *user_input, char **argv)
 	char *temp_token, *temp_input, *save_ptr;
 	int count, index;
 
-	printf("started int get_token(char *user_input, char **argv)");
 	index = 1;
 	temp_input = strdup(user_input);
 	save_ptr = NULL;
@@ -37,7 +36,6 @@ int get_token(char *user_input, char **argv)
 	argv[index] = NULL;
 	free(temp_token);
 	free(temp_input);
-	 printf("ended int get_token(char *user_input, char **argv)");
 
 	return (count);
 }

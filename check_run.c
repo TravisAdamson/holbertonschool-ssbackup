@@ -1,15 +1,15 @@
 #include "shellshocked.h"
 extern char **environ;
 
-int check_run(char **argv, char *path)
+int check_run(char **argv, char *cwd)
 {
 	pid_t pid = fork();
 	int status = 0;
 	int index = 2;
 	char **path_tokens;
-
-	path[strcspn(path, ":")] = ' ';
-	path_tokens = get_token2(path);
+	printf("starting check_run");
+	cwd[strcspn(cwd, ":")] = ' ';
+	path_tokens = get_token2(cwd);
 	printf("started  -- int main(int argc, char *argv[]))");
 	if (path_tokens == NULL)
 		return (-1);
@@ -36,3 +36,4 @@ int check_run(char **argv, char *path)
 	printf("ended  -- int main(int argc, char *argv[]))");
 	return (1);
 }
+
