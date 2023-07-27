@@ -7,9 +7,11 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <time.h>
+#include <sys/wait.h>
 #define prompt "Shellshocked $"
 
 int main(int argc, char **argv);
 int print_env(char **environ);
 int get_token(char *user_input, char **argv);
+int check_run(char **argv);
 #endif

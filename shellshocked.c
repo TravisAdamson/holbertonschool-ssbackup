@@ -9,12 +9,12 @@
  */
 int main(int argc, char *argv[])
 {
-	int i, num_char;
+	int num_char, pass_check;
 	size_t bsize;
 	char *user_input;
 
-	i = 0;
 	bsize = 1024;
+	argc = 0;
 	user_input = malloc(bsize);
 	if (user_input == NULL)
 	{
@@ -31,7 +31,11 @@ int main(int argc, char *argv[])
 			exit(100);
 		}
 		argc = get_token(user_input, argv);
-		
+		if (argc != 0)
+			printf("You didn't enter any commands");
+		pass_check = check_run(argv);
+		if (pass_check < 0)
+			printf("You entered something that isn't a command");
 	}
 	free(user_input);
 	return (0);
