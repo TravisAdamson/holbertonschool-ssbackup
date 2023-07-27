@@ -9,7 +9,7 @@
 #include <time.h>
 #define prompt "Shellshocked $"
 
-int main();
+int main(int argc, char **argv);
 int print_env(char **environ);
-int get_token(char *user_input, char **agrv, int argc);
+int get_token(char *user_input, char **argv);
 #endif

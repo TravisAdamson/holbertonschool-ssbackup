@@ -2,16 +2,16 @@
 
 /**
  * main - Generates a simple shell
+ * @argc: Number of arguements given
+ * @argv: The arguements given
  *
- * Return: 
+ * Return: 0 on success
  */
-int main()
+int main(int argc, char *argv[])
 {
 	int i, num_char;
 	size_t bsize;
 	char *user_input;
-	char *token;
-	char *com = "ls";
 
 	i = 0;
 	bsize = 1024;
@@ -21,20 +21,17 @@ int main()
 		perror("Your memory is shellshocked, unable to continue");
 		exit(1);
 	}
-	while (i != 15)
+	while (1)
 	{
 		printf("%s", prompt);
 		num_char = getline(&user_input, &bsize, stdin);
-		if (num_char == 1)
-			i = 15;
-		token = strtok(user_input, " ");
-		if (token)
-			system(com);
-		while (token != NULL)
+		if (num_char  == -1)
 		{
-			printf("%s\n", token);
-			token = strtok(NULL, " ");
+			perror("\n\nYou have been shellshocked and your session has ended!\n");
+			exit(100);
 		}
+		argc = get_token(user_input, argv);
+		
 	}
 	free(user_input);
 	return (0);

@@ -4,13 +4,12 @@
  * get_token - Tokenizes the user input
  * @user_input: The input to be tokenized
  * @argv: Where to store the tokens
- * @argc: Number of arguments in argv
  *
- * Return: 1 on sucess or 0 on fail
+ * Return: The number of arguments
  */
-int get_token(char *user_input, char **argv, int argc)
+int get_token(char *user_input, char **argv)
 {
-	char *temp_token, *temp_input;
+	char *temp_token, *temp_input, *save_ptr;
 	int count, index;
 
 	index = 1;
@@ -24,22 +23,25 @@ int get_token(char *user_input, char **argv, int argc)
 		temp_token = strtok(NULL, " ");
 		count++;
 	}
-	argc = count;
-	argv = malloc(count * sizeof(char *));
-	if (argv == NULL)
+	save_ptr = malloc((count + 1) * sizeof(char *));
+	if (save_ptr == NULL)
 	{
 		free(temp_token);
 		free(temp_input);
 		return (0);
 	}
-	argv[0] = strtok(user_input, " ");
-	while (argv[index] != NULL)
+	argv[index] = NULL;
+	argv[index] = strtok(user_input, " ");
+	index++;
+	while (index < count)
 	{
+		argv[index] = NULL;
 		argv[index] = strtok(NULL, " ");
 		index++;
 	}
+	argv[index] = NULL;
 	free(temp_token);
 	free(temp_input);
-	return (1);
+	return (count);
 }
 

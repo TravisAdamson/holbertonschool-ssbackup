@@ -1,4 +1,5 @@
 *~
 *.txt
 .simple_shell_history
-\#*
+\#
+Backups*
