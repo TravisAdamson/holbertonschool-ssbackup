@@ -10,6 +10,7 @@
 #include <sys/wait.h>
 #define prompt "Shellshocked $"
 
+extern char **environ;
 int main(int argc, char **argv);
 int print_env(char **environ);
 int get_token(char *user_input, char **argv);
