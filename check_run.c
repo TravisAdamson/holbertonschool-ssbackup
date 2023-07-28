@@ -36,5 +36,8 @@ int check_run(char **argv, char *path)
         printf("ended  -- int main(int argc, char *argv[]))");
         return (1);
 }
+
+
+~
 ~
 
