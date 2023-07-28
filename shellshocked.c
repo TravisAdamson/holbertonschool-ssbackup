@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 	bsize = 1024;
 	argc = 0;
 	name = "PATH";
-	path = "This is just a test";
+	path = NULL;
 	user_input = malloc(bsize);
 	if (user_input == NULL)
 	{
@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
 		if (num_char  == -1)
 		{
 			perror("\n\nYou have been shellshocked and your session has ended!\n");
+			free(user_input);
 			exit(100);
 		}
 		argc = get_token(user_input, argv);

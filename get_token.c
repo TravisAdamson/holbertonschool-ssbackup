@@ -36,6 +36,5 @@ int get_token(char *user_input, char **argv)
 	argv[index] = NULL;
 	free(temp_token);
 	free(temp_input);
-
 	return (count);
 }
