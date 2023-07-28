@@ -19,13 +19,14 @@ int main(int argc, char *argv[])
 	bsize = 1024;
 	argc = 0;
 	name = "PATH";
-	path = NULL;
+	path = "This is a test";
 	user_input = malloc(bsize);
 	if (user_input == NULL)
 	{
 		perror("Your memory is shellshocked, unable to continue");
 		exit(1);
 	}
+	path = get_env(name, environ);
 	while (1)
 	{
 		printf("%s", prompt);
@@ -39,8 +40,6 @@ int main(int argc, char *argv[])
 		argc = get_token(user_input, argv);
 		if (argc == 0)
 			printf("You didn't enter any commands");
-		path = get_env(name);
-		printf("Path = %s\n", path);
 		pass_check = check_run(argv, path);
 		if (pass_check < 0)
 			printf("You entered something that isn't a command");

@@ -1,0 +1,7 @@
+*~
+*.txt
+.simple_shell_history
+\#
+backup*
+test
+vgcore*

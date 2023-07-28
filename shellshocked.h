@@ -13,7 +13,7 @@
 extern char **environ;
 int main(int argc, char **argv);
 int print_env(char **environ);
-char *get_env(char *name);
+char *get_env(char *name, char **environ);
 int get_token(char *user_input, char **argv);
 int check_run(char **argv, char *paths);
 char **split_path(char *path);
