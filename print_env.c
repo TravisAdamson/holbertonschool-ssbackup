@@ -17,13 +17,18 @@ int print_env(char **environ)
 char *get_env(char *name)
 {
 	char **env2 = environ;
+	char *temp = NULL;
 	int index = 0;
 
+	printf("ENV = %s\n", env2[index]);
+	printf("environ = %s\n", environ[index]);
 	while (env2[index] != NULL)
 	{
 		if (strncmp(env2[index], name, strlen(name)) == 0)
 		{
-			return(strchr(env2[index], '=') + 1);
+			temp = strchr(env2[index], '=') + 1;
+			printf("Temp = %s\n", temp);
+			return(temp);
 		}
 		index++;
 	}

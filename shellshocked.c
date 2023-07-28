@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 	char *user_input;
 	char *name;
 	char *path;
-	char **paths;
+	/*char **paths;*/
 
 	bsize = 1024;
 	argc = 0;
@@ -40,8 +40,8 @@ int main(int argc, char *argv[])
 		if (argc == 0)
 			printf("You didn't enter any commands");
 		path = get_env(name);
-		paths = split_path(path);
-		pass_check = check_run(argv, paths);
+		printf("Path = %s\n", path);
+		pass_check = check_run(argv, path);
 		if (pass_check < 0)
 			printf("You entered something that isn't a command");
 	}

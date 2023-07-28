@@ -1,13 +1,14 @@
 #include "shellshocked.h"
 extern char **environ;
 
-int check_run(char **argv, char **paths)
+int check_run(char **argv, char *paths)
 {
         pid_t pid = fork();
         int status = 0;
         int index = 2;
 
-        printf("PATH = %s\n", paths[index]);
+	printf("PATH = %s\n", paths);
+
 	while (argv[index] != NULL)
         {
                 argv[index][strcspn(argv[index], "\n")] = '\0';

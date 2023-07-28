@@ -15,6 +15,6 @@ int main(int argc, char **argv);
 int print_env(char **environ);
 char *get_env(char *name);
 int get_token(char *user_input, char **argv);
-int check_run(char **argv, char **paths);
+int check_run(char **argv, char *paths);
 char **split_path(char *path);
 #endif
