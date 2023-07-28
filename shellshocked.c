@@ -13,10 +13,12 @@ int main(int argc, char *argv[])
 	size_t bsize;
 	char *user_input;
 	char *name;
+	char *path;
 
 	bsize = 1024;
 	argc = 0;
 	name = "PATH";
+	path = "This is just a test";
 	user_input = malloc(bsize);
 	if (user_input == NULL)
 	{
@@ -35,6 +37,7 @@ int main(int argc, char *argv[])
 		argc = get_token(user_input, argv);
 		if (argc == 0)
 			printf("You didn't enter any commands");
+		printf("PATH = %s\n", path);
 		path = get_env(name);
 		printf("PATH = %s\n", path);
 		pass_check = check_run(argv, path);

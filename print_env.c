@@ -16,11 +16,18 @@ int print_env(char **environ)
 char *get_env(char *name)
 {
 	char **env = environ;
-	while (*eviron != NULL)
+	char *temp = NULL;
+	while (*env != NULL)
 	{
-		if (strncmp(*environ, name, strlen(name)) == 0)
-			return(strchr(*environ, '=') +1);
-		environ++;
+		printf("This is a test\n");
+		printf("strlen(%s) = %ld\n", name, strlen(name));
+		if (strncmp(*env, name, strlen(name)) == 0)
+		{
+			temp = (strchr(*env, '=') +1);
+			printf("PATH = %s\n", temp);
+			return(temp);
+		}
+		env++;
 	}
 	return (NULL);
 }
