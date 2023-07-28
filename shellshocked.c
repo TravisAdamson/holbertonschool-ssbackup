@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 		if (argc == 0)
 			printf("You didn't enter any commands");
 		printf("PATH = %s\n", path);
-		path = get_env(name, environ);
+		path = get_env(name);
 		printf("PATH = %s\n", path);
 		pass_check = check_run(argv, path);
 		if (pass_check < 0)
