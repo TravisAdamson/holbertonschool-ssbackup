@@ -1,34 +1,40 @@
 #include "shellshocked.h"
 
-char **split_path(char *path)
+int get_path_size(char *temp_path)
 {
-	char **temp = NULL;
-	char *temp_path = strdup(path);
-	char *temp_path2 = strdup(path);
-	char *token;
-	int i = 1;
-	char *save_point = NULL;
-	
-	token = strtok_r(temp_path, ":", &save_point);
+	char *token = NULL;
+	char *delim = ":";
+	int count = 1;
+
+	token = strtok(temp_path, delim);
 	while (token != NULL)
 	{
-		token = strtok_r(NULL, ":", &save_point);
-		i++;
+		token = strtok(NULL, delim);
+		count++;
 	}
-	temp = malloc(sizeof(char *) * (i + 1));
-	if (temp == NULL)
-		return (NULL);
-	i = 1;
-	token = strtok_r(temp_path2, ":", &save_point);
+	return (count);
+}
+
+/**
+ * split_path - Splits the path variable into tokens
+ * @temp_path: The copy of the PATH variable
+ * @tokens: The array of path directories
+ *
+ * Return: 1 on success
+ */
+
+int split_path(char *temp_path, char **tokens)
+{
+	char *delim = ":";
+	char *token = NULL;
+	int i = 0;
+
+	token = strtok(temp_path, delim);
 	while (token != NULL)
 	{
-		temp[i] = token;
-		printf("Token [%d] = %s\n", i, token);
-		token = strtok_r(NULL, ";", &save_point);
+		tokens[i] = token;
+		token = strtok(NULL, delim);
 		i++;
 	}
-	temp[i] = NULL;
-	free(temp_path);
-	free(temp_path2);
-	return (temp);
+	return (1);
 }

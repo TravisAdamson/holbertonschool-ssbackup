@@ -17,5 +17,6 @@ int print_env(char **environ);
 char *get_env(char *name, char **environ);
 int get_token(char *user_input, char **argv);
 int check_run(char **argv, char **paths);
-int split_path(char *path, char **tokens);
+int split_path(char *temp_path, char **tokens);
+int get_path_size(char *temp_path);
 #endif

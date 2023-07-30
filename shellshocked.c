@@ -1,21 +1,5 @@
 #include "shellshocked.h"
 
-void init_tokens(void)
-{
-	int i = 0;
-
-	for (i = 0; i < 10; i++)
-		tokens[i] = NULL;
-}
-
-void free_tokens(int i)
-{
-	if (tokens[i] != NULL)
-		free_tokens(i + 1);
-	free(tokens[i]);
-	free(tokens);
-	return;
-}
 /**
  * main - Generates a simple shell
  * @argc: Number of arguements given
@@ -25,11 +9,11 @@ void free_tokens(int i)
  */
 int main(int argc, char *argv[])
 {
-	int num_char;
+	int num_char, path_size;
 	size_t bsize;
 	char *user_input;
 	char *name;
-	char *path;
+	char *path, *temp_path;
 
 	bsize = 1024;
 	argc = 0;
@@ -42,7 +26,13 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	path = get_env(name, environ);
-	split_path(path, tokens);
+	temp_path = strdup(path);
+	path_size = get_path_size(temp_path);
+	free(temp_path);
+	tokens = malloc(sizeof(char *) * path_size);
+	temp_path = strdup(path);
+	split_path(temp_path, tokens);
+	free(temp_path);
 	while (1)
 	{
 		printf("%s", prompt);
@@ -50,15 +40,13 @@ int main(int argc, char *argv[])
 		if (num_char  == -1)
 		{
 			perror("\n\nYou have been shellshocked and your session has ended!\n");
-			free(user_input);
-			exit(100);
+			break;
 		}
 		argc = get_token(user_input, argv);
 		if (argc == 0)
 			printf("You didn't enter any commands");
 	}
-	free_tokens(0);
+	free(tokens);
 	free(user_input);
-	free(path);
 	return (0);
 }
