@@ -7,15 +7,6 @@ void init_tokens(void)
 	for (i = 0; i < 10; i++)
 		tokens[i] = NULL;
 }
-
-void free_tokens(int i)
-{
-	if (tokens[i] != NULL)
-		free_tokens(i + 1);
-	free(tokens[i]);
-	free(tokens);
-	return;
-}
 /**
  * main - Generates a simple shell
  * @argc: Number of arguements given
@@ -25,16 +16,19 @@ void free_tokens(int i)
  */
 int main(int argc, char *argv[])
 {
-	int num_char;
+	int num_char, i;
 	size_t bsize;
 	char *user_input;
 	char *name;
 	char *path;
+	int path_check = 0;
 
 	bsize = 1024;
+	i = 0;
 	argc = 0;
 	name = "PATH";
 	path = NULL;
+	init_tokens();
 	user_input = malloc(bsize);
 	if (user_input == NULL)
 	{
@@ -42,7 +36,6 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	path = get_env(name, environ);
-	split_path(path, tokens);
 	while (1)
 	{
 		printf("%s", prompt);
@@ -56,9 +49,16 @@ int main(int argc, char *argv[])
 		argc = get_token(user_input, argv);
 		if (argc == 0)
 			printf("You didn't enter any commands");
+		path_check = split_path(path, tokens);
+		if (path_check == 0)
+			return (-1);
 	}
-	free_tokens(0);
+	while (i < 10)
+	{
+		free(tokens[i]);
+		i++;
+	}
+	free(tokens);
 	free(user_input);
-	free(path);
 	return (0);
 }

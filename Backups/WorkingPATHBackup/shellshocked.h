@@ -11,7 +11,7 @@
 #define prompt "Shellshocked $"
 
 extern char **environ;
-char **tokens;
+char *tokens[10];
 int main(int argc, char **argv);
 int print_env(char **environ);
 char *get_env(char *name, char **environ);
