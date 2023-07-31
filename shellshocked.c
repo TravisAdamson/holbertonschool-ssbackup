@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 	while (1)
 	{
 		index = 0;
-		argc = 0;
+		argc = 1;
 		printf("%s", prompt);
 		num_char = getline(&user_input, &bsize, stdin);
 		if (num_char  == -1)
@@ -52,9 +52,9 @@ int main(int argc, char *argv[])
 		{
 			index = check_file_exists(argv[1], tokens);
 			if (index != 0)
-				printf("The command exists in tokens[%d]", index);
+				printf("The command exists in tokens[%d]\n", index);
 			else
-				printf("The command you entered does not exist! Format: <command> [options]");
+				printf("The command you entered does not exist! Format: <command> [options]\n");
 		}
 	}
 	free(tokens);
