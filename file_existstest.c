@@ -5,12 +5,11 @@
 
 int check_file_exists(char *command, char **tokens)
 {
-        int index;
-	char *dir_name;
+        int index = 0;
+	char *dir_name = tokens[index];
 	DIR *dir;
 	struct dirent *list;
 
-	index = 0;
 	while (tokens[index] != NULL)
 	{
 		dir_name = tokens[index];
@@ -25,9 +24,10 @@ int check_file_exists(char *command, char **tokens)
 					return (index);
 				}
 			}
+			closedir(dir);
 		}
-		closedir(dir);
 		index++;
 	}
+	free(dir);
 	return (0);
 }
