@@ -9,14 +9,15 @@
  */
 int main(int argc, char *argv[])
 {
-	int num_char, path_size, index;
+	int num_char, path_size, index, exists;
 	size_t bsize;
 	char *user_input;
-	char *name;
+	char *name, *temp_com, *temp_dir;
 	char *path, *temp_path;
 
 	bsize = 1024;
 	argc = 0;
+	exists = 0;
 	name = "PATH";
 	path = NULL;
 	index = 0;
@@ -37,6 +38,8 @@ int main(int argc, char *argv[])
 	while (1)
 	{
 		index = 0;
+		exists = 0;
+		num_char = 0;
 		argc = 1;
 		printf("%s", prompt);
 		num_char = getline(&user_input, &bsize, stdin);
@@ -50,11 +53,23 @@ int main(int argc, char *argv[])
 			printf("You didn't enter any commands");
 		else
 		{
-			index = check_file_exists(argv[1], tokens);
-			if (index != 0)
-				printf("The command exists in tokens[%d]\n", index);
-			else
-				printf("The command you entered does not exist! Format: <command> [options]\n");
+			while (tokens[index] != NULL)
+			{
+				temp_com = strdup(argv[1]);
+				temp_dir = strdup(tokens[index]);
+				exists = check_file_exists(argv[1], tokens[index]);
+				if (exists != 0)
+				{
+					printf("The command exists in tokens[%d]\n", index);
+					free(temp_com);
+					free(temp_dir);
+					break;
+				}
+				else
+					index++;
+				free(temp_com);
+				free(temp_dir);
+			}
 		}
 	}
 	free(tokens);
