@@ -9,7 +9,7 @@
  */
 int main(int argc, char *argv[])
 {
-	int num_char, path_size;
+	int num_char, path_size, index;
 	size_t bsize;
 	char *user_input;
 	char *name;
@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
 	argc = 0;
 	name = "PATH";
 	path = NULL;
+	index = 0;
 	user_input = malloc(bsize);
 	if (user_input == NULL)
 	{
@@ -45,6 +46,14 @@ int main(int argc, char *argv[])
 		argc = get_token(user_input, argv);
 		if (argc == 0)
 			printf("You didn't enter any commands");
+		else
+		{
+			index = check_file_exists(argv[1], tokens);
+			if (index != 0)
+				printf("The command exists in tokens[%d]", index);
+			else
+				printf("The command you entered does not exist! Format: <command> [options]");
+		}
 	}
 	free(tokens);
 	free(user_input);
