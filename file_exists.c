@@ -3,25 +3,20 @@
 int check_file_exists(char *command, char **tokens)
 {
 	int exists, index;
-	char *temp_command, *temp_command2;
+	char *temp_command;
 
 	index = 0;
 	exists = 1;
-	temp_command = tokens[index];
-	temp_command2 = command;
-	strcat(temp_command, temp_command2);
-	exists = access(temp_command, F_OK);
-	if (exists != 0)
-		index++;
-	while ((exists == 1) && (temp_command != NULL))
+	while ((exists == 1) && (tokens[index] != NULL))
 	{
-		temp_command = tokens[index];
-		temp_command2 = command;
-		strcat(temp_command, temp_command2);
+		temp_command = malloc(strlen(tokens[index]) + strlen(command));
+		strcpy(temp_command, tokens[index]);
+		strcat(temp_command, command);
 		exists = access(temp_command, F_OK);
+		free(temp_command);
 		if (exists == 0)
-			break;
+			return (index);
 		index++;
 	}
-	return (index);
+	return (0);
 }
