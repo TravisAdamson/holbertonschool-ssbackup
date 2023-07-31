@@ -6,13 +6,15 @@
 int check_file_exists(char *command, char **tokens)
 {
         int index;
+	char *dir_name;
 	DIR *dir;
 	struct dirent *list;
 
 	index = 0;
 	while (tokens[index] != NULL)
 	{
-		dir = opendir(tokens[index]);
+		dir_name = tokens[index];
+		dir = opendir(dir_name);
 		if (dir != NULL)
 		{
 			while ((list = readdir(dir)) != NULL)
