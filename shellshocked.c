@@ -36,6 +36,8 @@ int main(int argc, char *argv[])
 	free(temp_path);
 	while (1)
 	{
+		index = 0;
+		argc = 0;
 		printf("%s", prompt);
 		num_char = getline(&user_input, &bsize, stdin);
 		if (num_char  == -1)
