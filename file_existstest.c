@@ -1,25 +1,31 @@
 #include "shellshocked.h"
 
 #include <sys/stat.h>
+#include <dirent.h>
 
 int check_file_exists(char *command, char **tokens)
 {
-        int exists, index;
-        char *temp_command;
-        struct stat buffer;
+        int index;
+	DIR *dir;
+	struct dirent *list;
 
-        index = 0;
-        exists = 1;
-        while ((exists == 1) && (tokens[index] != NULL))
-        {
-                temp_command = malloc(strlen(tokens[index]) + strlen(command));
-                strcpy(temp_command, tokens[index]);
-                strcat(temp_command, command);
-                exists = stat(temp_command, &buffer);
-                free(temp_command);
-                if (exists == 0)
-                        return (index);
-                index++;
-        }
-        return (0);
+	index = 0;
+	while (tokens[index] != NULL)
+	{
+		dir = opendir(tokens[index]);
+		if (dir != NULL)
+		{
+			while ((list = readdir(dir)) != NULL)
+			{
+				if (strcmp(list->d_name, command) == 0)
+				{
+					printf("The file %s exists in the directory %s\n", command, tokens[index]);
+					return (index);
+				}
+			}
+		}
+		closedir(dir);
+		index++;
+	}
+	return (0);
 }
