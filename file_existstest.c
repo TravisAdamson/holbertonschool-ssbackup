@@ -5,29 +5,22 @@
 
 int check_file_exists(char *command, char **tokens)
 {
-        int index = 0;
-	char *dir_name = tokens[index];
-	DIR *dir;
-	struct dirent *list;
+	int i;
+	char *full_path;
 
-	while (tokens[index] != NULL)
+	for (i = 0; tokens[i] != NULL; i++)
 	{
-		dir_name = tokens[index];
-		dir = opendir(dir_name);
-		if (dir != NULL)
+		full_path = malloc(strlen(tokens[i]) + strlen(command) + 2);
+		strcpy(full_path, tokens[i]);
+		strcat(full_path, "/");
+		strcat(full_path, command);
+		if (access(full_path, F_OK) == 0) 
 		{
-			while ((list = readdir(dir)) != NULL)
-			{
-				if (strcmp(list->d_name, command) == 0)
-				{
-					printf("The file %s exists in the directory %s\n", command, tokens[index]);
-					return (index);
-				}
-			}
-			closedir(dir);
+			printf("The file, %s, can be found in %s", command, tokens[i]);
+			free(full_path);
+			return (i);
 		}
-		index++;
+		free(full_path);
 	}
-	free(dir);
 	return (0);
 }
