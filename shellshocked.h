@@ -19,6 +19,6 @@ int get_token(char *user_input, char **argv);
 int check_run(char **argv, char **paths);
 int split_path(char *temp_path, char **tokens);
 int get_path_size(char *temp_path);
-int check_file_exists(char *command, char *dir_name);
+int check_file_exists(char *dir_name);
 
 #endif
