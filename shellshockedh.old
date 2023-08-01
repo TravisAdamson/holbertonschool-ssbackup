@@ -12,6 +12,7 @@
 
 extern char **environ;
 char **tokens;
+char **argv;
 int main(int argc, char **argv);
 int print_env(char **environ);
 char *get_env(char *name, char **environ);
