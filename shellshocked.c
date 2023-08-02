@@ -11,7 +11,7 @@ int main(void)
     /* Check if the input is from a terminal (interactive mode) */
     int interactive_mode = isatty(STDIN_FILENO);
 
-    char *token; // Declare token outside the while loop
+    char *token; /* Declare token outside the while loop */
 
     while (1)
     {
