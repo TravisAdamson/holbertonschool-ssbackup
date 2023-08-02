@@ -1,24 +1,28 @@
 #ifndef SHELL_H
 #define SHELL_H
 
-#include <string.h>
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
-#include <errno.h>
-#include <time.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
 #include <sys/wait.h>
-#define prompt "Shellshocked $"
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <limits.h>
 
+#define MAX_COMMAND_LENGTH 1024
+#define prompt "Shellshocked $"
 extern char **environ;
-char **tokens;
-int main(int argc, char **argv);
-int print_env(char **environ);
-char *get_env(char *name, char **environ);
-int get_token(char *user_input, char **argv);
-int check_run(char **argv, char **paths);
-int split_path(char *temp_path, char **tokens);
-int get_path_size(char *temp_path);
-int check_file_exists(char *command, char *dir_name);
+
+char* get_environment_variable(const char *variable_name, char *envp[]);
+int execute_command(const char *command, char *envp[]);
+void run_cd(const char *args[]);
+void run_pwd();
+void run_echo(const char *args[]);
+void enumerate_environment(char *envp[]);
+void print_environment_variable(const char *variable_name, char *envp[]);
+int main(void);
 
 #endif
+

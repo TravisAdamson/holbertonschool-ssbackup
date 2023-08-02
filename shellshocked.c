@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    /* Declarations */
+    /** Declarations **/
     char *command;
     size_t command_len;
     ssize_t read_len;
@@ -11,7 +11,7 @@ int main(void)
     int found_newline;
     char *variable_name;
 
-    /* Allocate initial memory for the command */
+    /** Allocate initial memory for the command **/
     command_len = MAX_COMMAND_LENGTH;
     command = (char *)malloc(command_len * sizeof(char));
     if (command == NULL) {
@@ -19,28 +19,25 @@ int main(void)
         return 1;
     }
 
-    /* Check if the input is from a terminal (interactive mode) */
+    /** Check if the input is from a terminal (interactive mode) **/
     interactive_mode = isatty(STDIN_FILENO);
 
-    /*ssize_t i;*/
-    /*int found_newline;*/
-
-
+    /** Main loop **/
     while (1)
     {
         found_newline = 0;
 
-        /* Prompt in interactive mode */
+        /** Prompt in interactive mode **/
         if (interactive_mode)
         {
             printf("$ ");
             fflush(stdout); /* Make sure the prompt is displayed before reading input */
         }
 
-        /* Read the command using getline */
+        /** Read the command using getline **/
         read_len = getline(&command, &command_len, stdin);
 
-        /* Check for end-of-file or error in reading */
+        /** Check for end-of-file or error in reading **/
         if (read_len == -1)
         {
             if (feof(stdin))
@@ -55,14 +52,14 @@ int main(void)
             }
         }
 
-        /* Check if the last character is a newline and remove it */
+        /** Check if the last character is a newline and remove it **/
         if (command[read_len - 1] == '\n')
         {
             command[read_len - 1] = '\0';
             found_newline = 1;
         }
 
-        /* Check if the command is "exit" to quit the shell */
+        /** Check if the command is "exit" to quit the shell **/
         if (strcmp(command, "exit") == 0)
         {
             break;
@@ -73,27 +70,27 @@ int main(void)
         }
         else if (strncmp(command, "echo ", 5) == 0)
         {
-            /* Extract the variable name from the command (e.g., "echo VAR_NAME") */
+            /** Extract the variable name from the command (e.g., "echo VAR_NAME") **/
             variable_name = command + 5;
             print_environment_variable(variable_name, environ);
         }
         else
         {
-            /* Execute the command (supporting piped input) */
+            /** Execute the command (supporting piped input) **/
             if (execute_command(command, environ) != 0)
             {
                 fprintf(stderr, "Command '%s' not found.\n", command);
             }
         }
 
-        /* Restore the newline character if it was removed */
+        /** Restore the newline character if it was removed **/
         if (found_newline)
         {
             command[read_len - 1] = '\n';
         }
     }
 
-    /* Free dynamically allocated memory */
+    /** Free dynamically allocated memory **/
     free(command);
 
     return 0;
