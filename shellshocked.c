@@ -13,10 +13,14 @@ int main(void)
 
     while (1)
     {
+        ssize_t i;
+        int found_newline = 0;
+
         /* Prompt in interactive mode */
         if (interactive_mode)
         {
             printf("$ ");
+            fflush(stdout); /* Make sure the prompt is displayed before reading input */
         }
 
         /* Read the command using getline */
@@ -37,8 +41,16 @@ int main(void)
             }
         }
 
-        /* Remove the newline character from the command */
-        command[read_len - 1] = '\0';
+        /* Find the newline character and replace it with the null terminator */
+        for (i = 0; i < read_len; i++)
+        {
+            if (command[i] == '\n')
+            {
+                command[i] = '\0';
+                found_newline = 1;
+                break;
+            }
+        }
 
         /* Check if the command is "exit" to quit the shell */
         if (strcmp(command, "exit") == 0)
@@ -62,6 +74,12 @@ int main(void)
             {
                 fprintf(stderr, "Command '%s' not found.\n", command);
             }
+        }
+
+        /* Restore the newline character if it was removed */
+        if (found_newline)
+        {
+            command[i] = '\n';
         }
     }
 
