@@ -11,8 +11,6 @@ int main(void)
     /* Check if the input is from a terminal (interactive mode) */
     int interactive_mode = isatty(STDIN_FILENO);
 
-    char *token; /* Declare token outside the while loop */
-
     while (1)
     {
         /* Prompt in interactive mode */
@@ -24,7 +22,7 @@ int main(void)
         /* Read the command using getline */
         read_len = getline(&command, &command_len, stdin);
 
-        /* Check for end-of-file */
+        /* Check for end-of-file or error in reading */
         if (read_len == -1)
         {
             if (feof(stdin))
@@ -42,18 +40,28 @@ int main(void)
         /* Remove the newline character from the command */
         command[read_len - 1] = '\0';
 
-        /* Tokenize the input into separate commands */
-        token = strtok(command, "\n");
-        while (token != NULL)
+        /* Check if the command is "exit" to quit the shell */
+        if (strcmp(command, "exit") == 0)
         {
-            /* Execute the command */
-            if (execute_command(token, environ) != 0)
+            break;
+        }
+        else if (strcmp(command, "env") == 0)
+        {
+            enumerate_environment(environ);
+        }
+        else if (strncmp(command, "echo ", 5) == 0)
+        {
+            /* Extract the variable name from the command (e.g., "echo VAR_NAME") */
+            char *variable_name = command + 5;
+            print_environment_variable(variable_name, environ);
+        }
+        else
+        {
+            /* Execute the command (supporting piped input) */
+            if (execute_command(command, environ) != 0)
             {
-                fprintf(stderr, "Command '%s' not found.\n", token);
+                fprintf(stderr, "Command '%s' not found.\n", command);
             }
-
-            /* Get the next token */
-            token = strtok(NULL, "\n");
         }
     }
 
