@@ -40,10 +40,18 @@ int main(void)
         /* Remove the newline character from the command */
         command[read_len - 1] = '\0';
 
-        /* Execute the command */
-        if (execute_command(command, environ) != 0)
+        /* Tokenize the input into separate commands */
+        char *token = strtok(command, "\n");
+        while (token != NULL)
         {
-            fprintf(stderr, "Command '%s' not found.\n", command);
+            /* Execute the command */
+            if (execute_command(token, environ) != 0)
+            {
+                fprintf(stderr, "Command '%s' not found.\n", token);
+            }
+
+            /* Get the next token */
+            token = strtok(NULL, "\n");
         }
     }
 
