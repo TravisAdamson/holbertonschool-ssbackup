@@ -22,7 +22,4 @@ void run_echo(const char *args[]);
 void enumerate_environment(char *envp[]);
 void print_environment_variable(const char *variable_name, char *envp[]);
 int main(void);
-
 #endif
-
-
