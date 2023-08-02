@@ -3,10 +3,18 @@
 int main(void)
 {
     /* Declarations */
-    char *command = NULL;
-    size_t command_len = 0;
+    char *command;
+    size_t command_len;
     ssize_t read_len;
     extern char **environ; /* Declare environ */
+
+    /* Allocate initial memory for the command */
+    command_len = MAX_COMMAND_LENGTH;
+    command = (char *)malloc(command_len * sizeof(char));
+    if (command == NULL) {
+        perror("malloc");
+        return 1;
+    }
 
     /* Check if the input is from a terminal (interactive mode) */
     int interactive_mode = isatty(STDIN_FILENO);
@@ -41,15 +49,11 @@ int main(void)
             }
         }
 
-        /* Find the newline character and replace it with the null terminator */
-        for (i = 0; i < read_len; i++)
+        /* Check if the last character is a newline and remove it */
+        if (command[read_len - 1] == '\n')
         {
-            if (command[i] == '\n')
-            {
-                command[i] = '\0';
-                found_newline = 1;
-                break;
-            }
+            command[read_len - 1] = '\0';
+            found_newline = 1;
         }
 
         /* Check if the command is "exit" to quit the shell */
@@ -79,7 +83,7 @@ int main(void)
         /* Restore the newline character if it was removed */
         if (found_newline)
         {
-            command[i] = '\n';
+            command[read_len - 1] = '\n';
         }
     }
 
