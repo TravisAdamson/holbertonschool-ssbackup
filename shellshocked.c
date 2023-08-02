@@ -7,6 +7,9 @@ int main(void)
     size_t command_len;
     ssize_t read_len;
     extern char **environ; /* Declare environ */
+    int interactive_mode;
+    int found_newline;
+    char *variable_name;
 
     /* Allocate initial memory for the command */
     command_len = MAX_COMMAND_LENGTH;
@@ -17,10 +20,11 @@ int main(void)
     }
 
     /* Check if the input is from a terminal (interactive mode) */
-    int interactive_mode = isatty(STDIN_FILENO);
+    interactive_mode = isatty(STDIN_FILENO);
 
-    ssize_t i;
-    int found_newline;
+    /*ssize_t i;*/
+    /*int found_newline;*/
+
 
     while (1)
     {
@@ -70,7 +74,7 @@ int main(void)
         else if (strncmp(command, "echo ", 5) == 0)
         {
             /* Extract the variable name from the command (e.g., "echo VAR_NAME") */
-            char *variable_name = command + 5;
+            variable_name = command + 5;
             print_environment_variable(variable_name, environ);
         }
         else
