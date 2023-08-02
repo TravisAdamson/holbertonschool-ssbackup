@@ -19,10 +19,12 @@ int main(void)
     /* Check if the input is from a terminal (interactive mode) */
     int interactive_mode = isatty(STDIN_FILENO);
 
+    ssize_t i;
+    int found_newline;
+
     while (1)
     {
-        ssize_t i;
-        int found_newline = 0;
+        found_newline = 0;
 
         /* Prompt in interactive mode */
         if (interactive_mode)
