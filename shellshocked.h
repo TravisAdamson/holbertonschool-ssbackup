@@ -14,6 +14,7 @@
 #define MAX_COMMAND_LENGTH 1024
 #define prompt "Shellshocked $"
 extern char **environ;
+
 char* get_environment_variable(const char *variable_name, char *envp[]);
 int execute_command(const char *command, char *envp[]);
 void run_cd(const char *args[]);
@@ -22,4 +23,6 @@ void run_echo(const char *args[]);
 void enumerate_environment(char *envp[]);
 void print_environment_variable(const char *variable_name, char *envp[]);
 int main(void);
+
 #endif
+
