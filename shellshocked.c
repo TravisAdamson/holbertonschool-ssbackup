@@ -11,6 +11,8 @@ int main(void)
     /* Check if the input is from a terminal (interactive mode) */
     int interactive_mode = isatty(STDIN_FILENO);
 
+    char *token; // Declare token outside the while loop
+
     while (1)
     {
         /* Prompt in interactive mode */
@@ -41,7 +43,7 @@ int main(void)
         command[read_len - 1] = '\0';
 
         /* Tokenize the input into separate commands */
-        char *token = strtok(command, "\n");
+        token = strtok(command, "\n");
         while (token != NULL)
         {
             /* Execute the command */
