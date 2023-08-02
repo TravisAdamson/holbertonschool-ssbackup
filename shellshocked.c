@@ -57,10 +57,21 @@ int main(void)
         }
         else
         {
-            /* Execute the command (supporting piped input) */
-            if (execute_command(command, environ) != 0)
+            /* Tokenize the input into separate arguments */
+            char *args[MAX_COMMAND_LENGTH];
+            int i = 0;
+            char *token = strtok(command, " ");
+            while (token != NULL)
             {
-                fprintf(stderr, "Command '%s' not found.\n", command);
+                args[i++] = token;
+                token = strtok(NULL, " ");
+            }
+            args[i] = NULL;
+
+            /* Execute the command (supporting piped input) */
+            if (execute_command(args[0], environ) != 0)
+            {
+                fprintf(stderr, "Command '%s' not found.\n", args[0]);
             }
         }
     }
