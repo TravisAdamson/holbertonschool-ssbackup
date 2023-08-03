@@ -17,7 +17,7 @@ void turtle_cross_road_or_not(char *input, char **argv)
 	else if (launch == 0)
 	{
 		if (execvp(argv[0], argv) == -1)
-			perror(argv[0]), free(input), exit(2);
+			perror(argv[0]), free(input), exit(EXIT_FAILURE);
 	}
 	else
 		wait(&status);
