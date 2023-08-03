@@ -5,7 +5,7 @@
  * @cmdS: destination string vector
  * @delim: delimiter to be fed to splitting/tokenizing function
  *
- * @return 0 if input parsed to cmdS, -1 otherwise
+ * Return: 0 if input parsed to cmdS, -1 otherwise
  */
 
 int turtle_surgery(char *input, char **cmdS, char *delim)

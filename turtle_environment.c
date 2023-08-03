@@ -4,7 +4,7 @@
  * print_environment_variables - prints environmental variables
  * @environment_variables: an array of environmental variables
  *
- * Returns 0 upon success, -1 otherwise.
+ * Returns: 0 upon success, -1 otherwise.
  */
 int print_environment_variables(char **environment_variables)
 {

@@ -2,9 +2,9 @@
 
 /**
  * turtle_cross_road_or_not - launches input command with its arguments
- * @param input The command to be executed.
- * @param argv The arguments to the command.
- * @return void
+ * @input: The command to be executed.
+ * @argv: The arguments to the command.
+ * Return: void
  */
 void turtle_cross_road_or_not(char *input, char **argv)
 {

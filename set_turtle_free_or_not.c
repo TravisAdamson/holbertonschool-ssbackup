@@ -2,9 +2,9 @@
 
 /**
  * set_turtle_free_or_not - frees memory related to command arra
- * @cmdS The command array to be freed.
+ * @cmdS: The command array to be freed.
  *
- * @return void
+ * Return: void
  */
 void set_turtle_free_or_not(char **cmdS)
 {
