@@ -17,7 +17,7 @@ char *turtle_or_not(char *path, char *command)
 	while (new_path != NULL)
 	{
 		strcat(new_path, "/");
-		if (stat(strcat(new_path, command), &statbuf) == -1)
+		if (stat(strcat(new_path, command), &buffer) == -1)
 		{
 			if (errno == ENOENT)
 			{
@@ -29,7 +29,7 @@ char *turtle_or_not(char *path, char *command)
 				break;
 			}
 		}
-		new_path = strsep(path_copy, ":");
+		new_path = strsep(&path_copy, ":");
 	}
 	return (new_path);
 }
