@@ -44,5 +44,6 @@ void set_turtle_free_or_not(char **cmdS);
 char *shell_cracked(char **input, char *delim);
 ssize_t feed_the_turtle(const char *prmptStyle, char **input, size_t *len);
 int turtle_surgery(char *input, char **cmdS, char *delim);
+int check_command_exists(char *command);
 
 #endif
