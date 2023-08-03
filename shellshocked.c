@@ -3,7 +3,7 @@
 /**
  * main - main function that prompts for input, parses it
  *
- * @return 0 on success, -1 on error
+ * Return: 0 on success, -1 on error
  */
 
 int main(void)

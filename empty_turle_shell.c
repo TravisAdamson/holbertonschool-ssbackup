@@ -3,7 +3,7 @@
  * * empty_turtle_shell - determines if it is only space character
  * @input: input string
  *
- * Returns 0 if empty, -1 otherwise.
+ * Return: 0 if empty, -1 otherwise.
  */
 
 int empty_turtle_shell(char *input)
