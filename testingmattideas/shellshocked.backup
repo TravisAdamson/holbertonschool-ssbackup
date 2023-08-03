@@ -1,0 +1,38 @@
+#include "shell.h"
+
+/**
+ * main - main function that prompts for input, parses it
+ *
+ * Return: 0 on success, -1 on error
+ */
+int main(void)
+{
+    /* Your existing code */
+
+    while (1)
+    {
+        /* Your existing code */
+
+        /* Parse the input into an array of commands. */
+        turtle_surgery(command_line, command_array, SPC_DELIM);
+
+        /* Check if the first token exists in the PATH. */
+        if (command_array[0] && check_command_in_path(command_array[0]))
+        {
+            /* Command exists in the PATH, you can proceed with execution. */
+            /* For example, call your turtle_cross_road_or_not function here. */
+            turtle_cross_road_or_not(command_line, command_array);
+        }
+        else
+        {
+            /* Command does not exist in the PATH. */
+            printf("Command not found: %s\n", command_array[0]);
+        }
+
+        /* Your existing code */
+    }
+
+    /* Your existing code */
+    return 0;
+}
+
