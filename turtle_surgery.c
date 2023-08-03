@@ -24,6 +24,7 @@ int turtle_surgery(char *input, char **cmdS, char *delim)
 				free(input);
 			exit(st);
 		}
+		st = 2;
 	}
 	if (cmdT != NULL)
 		cmdT = NULL;
