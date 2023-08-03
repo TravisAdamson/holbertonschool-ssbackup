@@ -15,7 +15,10 @@ int print_environment_variables(char **environment_variables)
 
   for (; environment_variables != NULL && *environment_variables != NULL; ++environment_variables)
   {
-    printf("%s\n", *environment_variables);
+    if (environment_variables == NULL)
+	    printf("%s", *environment_variables);
+    else
+	    printf("%s\n", *environment_variables);
   }
   return (iter > 0 ? 0 : -1);
 }
