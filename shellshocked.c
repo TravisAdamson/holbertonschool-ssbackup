@@ -13,6 +13,7 @@ int main(void)
 	int prompt_check = 0;
 	char *command_array[BUFSIZ] = { NULL };
 
+	st = 0;
 	while (1)
 	{
 		signal(SIGINT, handle_turtle_interrupt);
