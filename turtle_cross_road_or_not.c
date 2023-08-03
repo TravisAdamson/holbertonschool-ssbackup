@@ -10,8 +10,9 @@ void turtle_cross_road_or_not(char *input, char **argv)
 {
 	pid_t launch = 0;
 	int status = 0;
+	char *path;
 
-	path = get_path(**environ);
+	path = get_path(environ);
 	full_path = turtle_or_not(argv[0], path);
 	launch = fork();
 	if (launch == -1)

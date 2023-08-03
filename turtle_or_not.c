@@ -9,7 +9,7 @@ char *turtle_or_not(char *path, char *command)
 {
 	struct stat buffer;
 	char *path_copy;
-	char *full_path;
+	char *new_path;
 	char buf[PATH_MAX + 1];
 
 	path_copy = strdup(path);
@@ -29,7 +29,7 @@ char *turtle_or_not(char *path, char *command)
 				break;
 			}
 		}
-		new_path = strsep(path_copy, delim);
+		new_path = strsep(path_copy, ":");
 	}
 	return (new_path);
 }
