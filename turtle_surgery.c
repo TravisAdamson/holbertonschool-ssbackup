@@ -21,10 +21,9 @@ int turtle_surgery(char *input, char **cmdS, char *delim)
 		{
 			set_turtle_free_or_not(cmdS);
 			if (input)
-			{
-				st = 2;
 				free(input);
-			}
+			else
+				st = 2;
 			exit(st);
 		}
 	}
