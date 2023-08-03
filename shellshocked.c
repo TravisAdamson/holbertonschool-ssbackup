@@ -12,7 +12,7 @@ int main(void)
 	size_t command_line_len = 0;
 	int prompt_check = 0;
 	char *command_array[BUFSIZ] = { NULL };
-	
+
 	st = 0;
 	while (1)
 	{

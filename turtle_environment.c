@@ -21,3 +21,26 @@ int print_environment_variables(char **environment_variables)
 	return (iter > 0 ? 0 : -1);
 }
 
+/**
+ * get_path - Find the PATH variable value
+ * @environment_variables: Environment variable list
+ *
+ * Return: Path variable
+ */
+char *get_path(**environment_variables)
+{
+	char **env = environment_variables;
+	char *temp = NULL;
+	int index = 0;
+
+	while (env[index] != NULL)
+	{
+		if (strncmp(env[index], name, "PATH") == 0)
+		{
+			temp = strchr(env[index], '=') + 1;
+			return(temp);
+		}
+		index++;
+	}
+	return (NULL);
+}
