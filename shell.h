@@ -33,6 +33,7 @@ typedef struct builtIn
 } builtIn;
 
 int st;
+int check_command_in_path(const char *command);
 void turtle_cross_road_or_not(char *input, char **argv);
 int turtle_or_not(char *file);
 void handle_turtle_interrupt(int sig);
