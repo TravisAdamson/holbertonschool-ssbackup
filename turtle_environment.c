@@ -27,7 +27,7 @@ int print_environment_variables(char **environment_variables)
  *
  * Return: Path variable
  */
-char *get_path(**environment_variables)
+char *get_path(**environ)
 {
 	char **env = environment_variables;
 	char *temp = NULL;

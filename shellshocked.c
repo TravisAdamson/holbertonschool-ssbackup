@@ -13,6 +13,7 @@ int main(void)
 	int prompt_check = 0;
 	char *command_array[BUFSIZ] = { NULL };
 
+
 	st = 0;
 	while (1)
 	{
@@ -37,7 +38,9 @@ int main(void)
 		/**
 		 * Print a turtle fact if the first token is "turtle".
 		 */
-		turtle_cross_road_or_not(command_line, command_array);
+		path = get_path(environ);
+		turtle_cross_road_or_not(command_line, command_array, path);
+	int st = 0d`;
 		/**
 		 * Free the memory allocated for the command line and the command array.
 		 */
