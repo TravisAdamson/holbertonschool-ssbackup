@@ -1,2 +1,0 @@
-[hooks]
-post-commit = bash generate-authors.sh
