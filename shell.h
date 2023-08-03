@@ -28,8 +28,8 @@ extern char **environ;
 
 typedef struct builtIn
 {
-    char *command_name;
-    int (*command_function)();
+	char *command_name;
+	int (*command_function)();
 } builtIn;
 
 

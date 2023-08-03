@@ -7,5 +7,6 @@
 int turtle_or_not(char *file)
 {
 	struct stat buffer;
+	
 	return (stat(file, &buffer));
 }

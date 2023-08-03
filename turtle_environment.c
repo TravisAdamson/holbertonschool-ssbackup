@@ -9,8 +9,9 @@
 int print_environment_variables(char **environment_variables)
 {
 	int iter = 0;
-	
-	for (; environment_variables != NULL && *environment_variables != NULL; ++environment_variables)
+
+	for (; environment_variables != NULL &&
+			*environment_variables != NULL; ++environment_variables)
 	{
 		if (environment_variables == NULL)
 			printf("%s", *environment_variables);
