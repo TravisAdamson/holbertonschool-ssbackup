@@ -11,7 +11,5 @@ int turtle_or_not(char *file)
 	struct stat buffer;
 	int status;
 	status = stat(file, &buffer);
-	if (status == 0)
-		printf("Did you know that the largest turtle ever recorded was a leatherback sea turtle that weighed over 2,000 pounds?\n");
 	return (stat(file, &buffer));
 }

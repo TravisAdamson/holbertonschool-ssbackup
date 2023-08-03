@@ -18,9 +18,5 @@
       }
     }
   }
-
-  /* Print a fact about turtles after the function returns. */
-  printf("This function is named after the empty shell of a turtle, which is called a carapace.\n");
-
   return (num_spaces == strlen(input) ? 0 : -1);
 }

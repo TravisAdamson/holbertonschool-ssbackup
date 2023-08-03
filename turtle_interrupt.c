@@ -18,9 +18,5 @@ void handle_turtle_interrupt(int sig)
      * Prints a new prompt.
      */
     printf("\n# ");
-    /**
-     * Prints a fact about turtles.
-     */
-    printf("Did you know that the shell turtle is a tortoise?\n");
   }
 }
