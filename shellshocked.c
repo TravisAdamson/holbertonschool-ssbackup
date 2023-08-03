@@ -1,7 +1,8 @@
 #include "shell.h"
 
 /**
- * main - main function that prompts for input, parses it, and prints a turtle fact if appropriate
+ * main - main function that prompts for input, parses it
+ *
  * @return 0 on success, -1 on error
  */
 
@@ -16,16 +17,13 @@ int main(void)
 	{
 		signal(SIGINT, handle_turtle_interrupt);
 		/**
-		 * * Get input from the user.
-		 * */
+		 * * Get input from the user
+		 */
 		prompt_check = feed_the_turtle("# ", &command_line, &command_line_len);
 		if (prompt_check == -1)
 			free(command_line), exit(0);
 		else if (prompt_check == 1)
 			continue;
-		/**
-		 * Check if the input is a turtle fact.
-		 */
 		if (empty_turtle_shell(command_line) == 0)
 		{
 			free(command_line), command_line = NULL;

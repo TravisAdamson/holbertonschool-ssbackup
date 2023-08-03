@@ -1,5 +1,6 @@
 #include "shell.h"
-/* empty_turtle_shell - determines if it is only space character
+/**
+ * * empty_turtle_shell - determines if it is only space character
  * @input: input string
  *
  * Returns 0 if empty, -1 otherwise.

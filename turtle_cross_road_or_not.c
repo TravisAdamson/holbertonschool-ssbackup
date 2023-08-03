@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * turtle_cross_road_or_not - launches input command with its arguments or prints a turtle fact
+ * turtle_cross_road_or_not - launches input command with its arguments
  * @param input The command to be executed.
  * @param argv The arguments to the command.
  * @return void

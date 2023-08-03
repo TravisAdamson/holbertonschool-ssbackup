@@ -5,7 +5,7 @@
  * @input: input
  *
  * @delim: delimiter(s) by which input is to be divided
- */ 
+ */
 
 char *shell_cracked(char **input, char *delim)
 {
