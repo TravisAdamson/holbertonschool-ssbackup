@@ -9,15 +9,15 @@ int empty_turtle_shell(char *input)
 {
 	int iter = 0;
 	size_t num_spaces = 0;
-	
-	if (input) 
+
+	if (input)
 	{
-		for (iter = 0; input[iter]; iter++) 
+		for (iter = 0; input[iter]; iter++)
 		{
-			if (input[iter] == '\n' || 
+			if (input[iter] == '\n' ||
 					input[iter] == '\r' ||
 					input[iter] == ' ' ||
-					input[iter] == '\t') 
+					input[iter] == '\t')
 			{
 				num_spaces++;
 			}

@@ -9,27 +9,24 @@
  */
 
 int turtle_surgery(char *input, char **cmdS, char *delim)
-
 {
-    int iter = 0;
-    char *cmdT = NULL, *dup = NULL;
+	int iter = 0;
+	char *cmdT = NULL, *dup = NULL;
 
-    for (dup = input, iter = 0; (cmdT = shell_cracked(&dup, delim)); iter++)
-    {
-        cmdS[iter] = cmdT;
-        if (strcmp("exit", cmdS[0]) == 0)
-        {
-            set_turtle_free_or_not(cmdS);
-            if (input)
-                free(input);
-            exit(0);
-        }
-    }
-    if (cmdT != NULL)
-        cmdT = NULL;
-
-    if (dup != NULL)
-        free(dup), dup = NULL;
-
-    return (*cmdS ? 0 : -1);
+	for (dup = input, iter = 0; (cmdT = shell_cracked(&dup, delim)); iter++)
+	{
+		cmdS[iter] = cmdT;
+		if (strcmp("exit", cmdS[0]) == 0)
+		{
+			set_turtle_free_or_not(cmdS);
+			if (input)
+				free(input);
+			exit(0);
+		}
+	}
+	if (cmdT != NULL)
+		cmdT = NULL;
+	if (dup != NULL)
+		free(dup), dup = NULL;
+	return (*cmdS ? 0 : -1);
 }
