@@ -8,10 +8,15 @@
  */
 void handle_turtle_interrupt(int sig)
 {
-  /*SIGINT is a signal that is sent to a deal with for Ctrl+C. */
+  /**
+   * SIGINT is a signal that is sent to a process when the user presses
+   * Ctrl+C.
+   */
   if (sig == SIGINT)
   {
-    /*Prints a new prompt.*/
+    /**
+     * Prints a new prompt.
+     */
     printf("\n# ");
   }
 }
