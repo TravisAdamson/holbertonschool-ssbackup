@@ -22,7 +22,7 @@ int turtle_surgery(char *input, char **cmdS, char *delim)
 			if (input)
 				free(input);
 			
-			if (iter = 0)
+			if (iter == 0)
 				exit(0);
 			else
 				exit(2);
