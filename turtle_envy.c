@@ -1,15 +1,16 @@
 #include "shell.h"
 
-char *get_env(char *name, char **environ)
+char *get_path(char **environ)
 {
-	char **env2 = environ;
+	char **env = environ;
 	char *temp = NULL;
 	int index = 0;
-	while (env2[index] != NULL)
+	
+	while (env[index] != NULL)
 	{
-		if (strncmp(env2[index], name, strlen(name)) == 0)
+		if (strncmp(env[index], "PATH", 4) == 0)
 		{
-			temp = strchr(env2[index], '=') + 1;
+			temp = strchr(env[index], '=') + 1;
 			return(temp);
 		}
 		index++;
