@@ -8,26 +8,14 @@
  * Return: 0 if input parsed to cmdS, -1 otherwise
  */
 
-int turtle_surgery(char *input, char **cmdS, char *delim)
+void turtle_surgery(char *turtle_path)
 {
-	int iter = 0;
-	char *cmdT = NULL, *dup = NULL;
+    char *buf;
 
-	for (dup = input, iter = 0; (cmdT = shell_cracked(&dup, delim)); iter++)
-	{
-		cmdS[iter] = cmdT;
-		if (strncmp("exit", cmdS[0], 4) == 0)
-		{
-			set_turtle_free_or_not(cmdS);
-			if (input)
-				free(input);
-			exit(st);
-		}
-		st = 2;
-	}
-	if (cmdT != NULL)
-		cmdT = NULL;
-	if (dup != NULL)
-		free(dup), dup = NULL;
-	return (*cmdS ? 0 : -1);
+    if (!turtle_path)
+        return;
+    buf = turtle_path;
+    /* Perform surgery on the turtle */
+    free(buf);
 }
+

@@ -33,6 +33,7 @@ typedef struct builtIn
 } builtIn;
 
 int st;
+void turtle_surgery(char *turtle_path);
 void turtle_cross_road_or_not(char *input, char **argv);
 char *turtle_or_not(char *file, char *path);
 void handle_turtle_interrupt(int sig);
@@ -43,7 +44,6 @@ int print_environment_variables(char **environment_variables);
 void set_turtle_free_or_not(char **cmdS);
 char *shell_cracked(char **input, char *delim);
 ssize_t feed_the_turtle(const char *prmptStyle, char **input, size_t *len);
-int turtle_surgery(char *input, char **cmdS, char *delim);
 int check_command_exists(char *command);
 char *get_env(char *name, char **environ);
 char *get_path(char **environ);

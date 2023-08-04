@@ -1,35 +1,55 @@
 #include "shell.h"
-/**
- * turtle_or_not - checks if a file exists or is a turtle fact8
- * @file: The file to be checked.
- *
- * Return: 0 if the file exists or is a turtle fact, -1 otherwise.
- */
-char *turtle_or_not(char *path, char *command)
-{
-	struct stat buffer;
-	char *path_copy;
-	char *new_path;
-	char buf[PATH_MAX + 1];
 
-	path_copy = strdup(path);
-	new_path = getcwd(buf, sizeof(buf));
-	while (new_path != NULL)
-	{
-		strcat(new_path, "/");
-		if (stat(strcat(new_path, command), &buffer) == -1)
-		{
-			if (errno == ENOENT)
-			{
-				printf("The file does not exist");
-			}
-			else
-			{
-				printf("The file exists");
-				break;
-			}
-		}
-		new_path = strsep(&path_copy, ":");
-	}
-	return (new_path);
+char *turtle_or_not(char *file, char *path)
+{
+    char *path_copy, *turtle_test, *turtle_path, *temp;
+    size_t path_size;
+
+    if (!file || !path)
+        return NULL;
+    path_size = strlen(path) + 1;
+    path_copy = malloc(path_size);
+    if (!path_copy)
+        return NULL;
+
+    strcpy(path_copy, path);
+
+    turtle_test = malloc(sizeof(char) * (strlen(file) + 2));
+    if (!turtle_test)
+    {
+        free(path_copy);
+        return NULL;
+    }
+    temp = strtok_r(path_copy, ":", &path_copy);
+    if (!temp)
+    {
+        free(turtle_test);
+        free(path_copy);
+        return NULL;
+    }
+    turtle_path = malloc(sizeof(char) * (strlen(temp) + 2));
+    if (!turtle_path)
+    {
+        free(turtle_test);
+        free(path_copy);
+        return NULL;
+    }
+    while (temp)
+    {
+        strcpy(turtle_path, temp);
+        strcat(turtle_path, "/");
+        strcpy(turtle_test, turtle_path);
+        if (strcmp(file, turtle_test) == 0)
+        {
+            free(turtle_test);
+            free(path_copy);
+            return turtle_path;
+        }
+        temp = strtok_r(NULL, ":", &path_copy);
+    }
+    free(turtle_test);
+    free(path_copy);
+    free(turtle_path);
+    return NULL;
 }
+
